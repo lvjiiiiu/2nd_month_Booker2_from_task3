@@ -7,6 +7,8 @@
       <th></th>
       <th>Title</th>
       <th>Opinion</th>
+      <th></th>
+      <th></th>
     </tr>
     <% @books.each do |books| %>
     <tr>
@@ -17,6 +19,8 @@
       </td>
       <td><%= link_to books.title, book_path(books.id) %></td>
       <td><%= books.body %></td>
+      <td></td>
+      <td><p>コメント数：<%= books.book_comments.count %></p></td>
     </tr>
     <% end %>
   </table>
