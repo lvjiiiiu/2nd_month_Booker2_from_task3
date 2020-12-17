@@ -1,0 +1,23 @@
+<%= render 'books/sidebar', user: @user_sidebar, book: @book_sidebar %>
+
+<div class="col-md-8 offset-md-1 py-2">
+  <h2>Books</h2>
+  <table class="table">
+    <tr>
+      <th></th>
+      <th>Title</th>
+      <th>Opinion</th>
+    </tr>
+    <% @books.each do |books| %>
+    <tr>
+      <td>
+        <%=link_to user_path(books.user.id) do %>
+          <%=attachment_image_tag books.user, :profile_image, :fill, 50, 50, fallback: "no_image.jpg" %>
+        <% end %>
+      </td>
+      <td><%= link_to books.title, book_path(books.id) %></td>
+      <td><%= books.body %></td>
+    </tr>
+    <% end %>
+  </table>
+</div>

@@ -1,0 +1,30 @@
+
+<%= render 'books/sidebar', user: @user_sidebar, book: @book_sidebar %>
+
+<div class="col-md-8 offset-md-1 py-2">
+  <h2>Book detail</h2>
+  <table class="table">
+    <tr>
+      <td>
+        <%=attachment_image_tag @book.user, :profile_image, :fill, 40, 40, fallback: "no_image.jpg", class: 'mb-0' %>
+        <p><%= link_to @book.user.name, user_path(@book.user) %></p>
+      </td>
+      <td><%= link_to @book.title, book_path(@book) %></td>
+      <td><%= @book.body %></td>
+      <td>
+        <% if @book.user == current_user %>
+          <%= link_to "Edit", edit_book_path(@book), class: "text-white btn btn-success btn-sm" %>
+        <% end %>
+      </td>
+      <td>
+        <% if @book.user == current_user %>
+          <%= link_to "Destroy", book_path(@book), method: :delete, "data-confirm" => "本当に消しますか？", class: "text-white btn btn-danger btn-sm" %>
+        <% end %>
+      </td>
+    </tr>
+  </table>
+</div>
+
+
+
+

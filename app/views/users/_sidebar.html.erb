@@ -1,0 +1,50 @@
+<!-----------------------User info-------------------------------------------->
+<div class="col-md-3">
+  <h2 class="py-2">User info</h2>
+  <table class="table">
+    <%=attachment_image_tag user, :profile_image, :fill, 70, 70, fallback: "no_image.jpg", class: 'mb-3' %>
+    <tr>
+      <th>name</th>
+      <th><%= user.name %></th>
+    </tr>
+    <tr>
+      <th>introduction</th>
+      <th><%= user.introduction %></th>
+    </tr>
+  </table>
+    <%= link_to edit_user_path(user), class: "btn btn-outline-secondary w-100 p-0" do %>
+      <i class="fas fa-user-cog"></i>
+    <% end %>
+<!-----------------------New Book-------------------------------------------->
+  <h2 class="py-2 mt-2">New book</h2>
+    <div class="text-danger mb-3">
+          <% if book.errors.any? %>
+            <h2><%= pluralize(book.errors.count, "error") %> prohibited this obj from being saved:</h2>
+            <ul>
+              <% book.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+              <% end %>
+            </ul>
+          <% end %>
+        </div>
+
+    <%= form_with model: book, url: books_path, local:true do |f| %>
+      <h6 class="py-1 mt-2 mb-0">Title</h6>
+       <%= f.text_field :title %>
+      <h6 class="py-1 mt-3 mb-0">Opinion</h6>
+        <%= f.text_area :body %>
+        <%= f.submit "Create Book", class: "btn btn-success mt-2" %>
+    <% end %>
+</div>
+
+<!------------------------------memo-------------------------------------->
+<!--@user → userへ変更-->
+<!--@book → bookへ変更-->
+
+<!--users 呼び出しview側-->
+<%#= render 'users/sidebar', user: @user %>
+<%#= render 'users/sidebar', book: @book %>
+
+<!--books 呼び出しview側-->
+<%#= render 'books/sidebar', user: @user %>
+<%#= render 'post_books/sidebar', book: @book %>
