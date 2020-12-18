@@ -9,8 +9,9 @@ devise_for :users
   end 
   
   
-  resources :users, except: [:new, :destroy, :create] 
-  resources :relationships, only:[:create, :destroy] 
-  get '/follows' => 'relationships#follower'
-  get '/followers' => 'relationships#followed'
+  resources :users, except: [:new, :destroy, :create] do
+    resource :relationships, only:[:create, :destroy] 
+    get '/follows' => 'relationships#follower'
+    get '/followers' => 'relationships#followed'
+end
 end
