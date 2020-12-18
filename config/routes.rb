@@ -13,5 +13,5 @@ devise_for :users
     resource :relationships, only:[:create, :destroy] 
     get '/follows' => 'relationships#follower'
     get '/followers' => 'relationships#followed'
-end
+  end
 end
