@@ -8,11 +8,31 @@ class User < ApplicationRecord
   has_many :book_comments, dependent: :destroy
   has_many :favorites, dependent: :destroy
 
+  
+  has_many :follower, class_name: 'Relationship', foreign_key: 'follower_id', dependent: :destroy
+  has_many :followed, class_name: 'Relationship', foreign_key: ' followed_id', dependent: :destroy
+  has_many :following_user, through: :follower, source: :followed
+  has_many :follower_user, through: :followed, source: :follower
+  
+# 1. followメソッド　＝　フォローする
+  def follow(user_id)
+   follower.create(followed_id: user_id)
+  end
+
+# 2. unfollowメソッド　＝　フォローを外す
+  def unfollow(user_id)
+   follower.find_by(followed_id: user_id).destroy
+  end
+
+# 3. followingメソッド　＝　既にフォローしているかの確認
+  def following?(user)
+   following_user.include?(user)
+  end
+  
+  
   # name：一意性を持たせ、かつ2～20文字の範囲で設定してください。
   validates :name, uniqueness: true
   validates :name, length: { in: 2..20 }
-
   #  introduction：最大50文字までに設定してください。
-
   validates :introduction, length: { maximum: 50 }
 end
