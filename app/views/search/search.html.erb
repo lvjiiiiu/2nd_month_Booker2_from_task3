@@ -1,2 +1,56 @@
-<h1>Search#search</h1>
-<p>Find me in app/views/search/search.html.erb</p>
+<div class="col-md-12 py-2">
+  <div>
+    <% if @model == "user" %>
+      <h2>Users search for "<%= @value %>"</h2>
+      <table class="table">
+        <thead>
+          <tr>
+            <th></th>
+            <th>Name</th>
+            <th>Introduction</th>
+          </tr>
+        </thead>
+      <% @datas.each do |user| %>
+        <tbody>
+          <tr>
+            <th>
+              <%= attachment_image_tag(user, :profile_image, :fill, 40, 40, fallback: "no_image.jpg", size:'40x40') %>
+            </th>
+            <th>
+              <%= user.name %>
+            </th>
+            <th>
+              <%= user.introduction %>
+            </th>
+          </tr>
+        </tbody>
+      <% end %>
+      <% elsif @model == "book" %>
+      <h2>Books search for "<%= @value %>"</h2>
+      <table class="table">
+        <thead>
+          <tr>
+            <th></th>
+            <th>Title</th>
+            <th>Opinion</th>
+          </tr>
+          </thead>
+            <% @datas.each do |book| %>
+              <tbody>
+                <tr>
+                  <th>
+                    <%= attachment_image_tag(book.user, :profile_image, :fill, 40, 40, fallback: "no_image.jpg", size:'40x40') %>
+                  </th>
+                  <th>
+                    <%= book.title %>
+                  </th>
+                  <th>
+                    <%= book.body %>
+                  </th>
+                </tr>
+              </tbody>
+            <% end %>
+        <% end %>
+      </table>
+    </div>
+  </div>
