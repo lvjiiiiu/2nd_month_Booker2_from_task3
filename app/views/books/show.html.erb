@@ -11,6 +11,10 @@
       </td>
       <td><%= link_to @book.title, book_path(@book) %></td>
       <td><%= @book.body %></td>
+      <td class="favorite_btn">
+        <%= render "favorites/favorite-btn", book: @book %>
+      </td>
+      <td><p>コメント数：<%= @book.book_comments.count %></p></td>
       <td>
         <% if @book.user == current_user %>
           <%= link_to "Edit", edit_book_path(@book), class: "text-white btn btn-success btn-sm" %>
@@ -21,12 +25,6 @@
           <%= link_to "Destroy", book_path(@book), method: :delete, "data-confirm" => "本当に消しますか？", class: "text-white btn btn-danger btn-sm" %>
         <% end %>
       </td>
-      
-      <td class="favorite_btn">
-        <%= render "favorites/favorite-btn", book: @book %>
-      </td>
-      
-      <td><p>コメント数：<%= @book.book_comments.count %></p></td>
     </tr>
   </table>
   
@@ -36,7 +34,7 @@
   
   <div class="new-comment">
     <%= form_with(model:[@book, @book_comment]) do |f| %>
-      <%= f.text_area :comment, rows:'5' %>
+      <%= f.text_area :comment, size:"50" %>
       <div>
         <%= f.submit "送信" %>
       </div>
