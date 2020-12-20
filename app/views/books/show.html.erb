@@ -30,23 +30,12 @@
     </tr>
   </table>
   
-  <table>
-    <% @book.book_comments.each do |book_comment| %>
-    <tr>
-      <td>
-        <%=attachment_image_tag book_comment.user, :profile_image, :fill, 40, 40, fallback: "no_image.jpg", class: 'mb-0' %>
-        <p><%= book_comment.user.name %></p>
-      </td>
-      <td><%= book_comment.comment %></td>
-      <% if book_comment.user == current_user %>
-      <td><%= link_to "Destroy", book_book_comment_path(book_comment.book, book_comment), method: :delete, class: "text-white btn btn-danger btn-sm"%></td>
-      <% end %>
-    <% end %>
-    </tr>
-  </table>
+  <div class="comment_index_<%= @book.id %>">
+　  <%= render "book_comments/comment-index", book: @book %>
+  </div>
   
   <div class="new-comment">
-    <%= form_with(model:[@book, @book_comment], local: true) do |f| %>
+    <%= form_with(model:[@book, @book_comment]) do |f| %>
       <%= f.text_area :comment, rows:'5' %>
       <div>
         <%= f.submit "送信" %>
