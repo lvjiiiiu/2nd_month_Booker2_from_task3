@@ -13,22 +13,14 @@
     <% @books.each do |books| %>
     <tr>
       <td>
-        <%=link_to user_path(books.user.id) do %>
-          <%=attachment_image_tag books.user, :profile_image, :fill, 50, 50, fallback: "no-image-icon.jpg" %>
+        <%= link_to user_path(books.user.id) do %>
+          <%= attachment_image_tag books.user, :profile_image, :fill, 50, 50, fallback: "no-image-icon.jpg" %>
         <% end %>
       </td>
       <td><%= link_to books.title, book_path(books.id) %></td>
       <td><%= books.body %></td>
-      <td>
-        <% if books.favorited_by?(current_user) %>
-          <%= link_to book_favorites_path(books), method: :delete, class: "like-btn" do %>
-            ♥<%= books.favorites.count %> 
-          <% end %>
-        <% else %>
-          <%= link_to book_favorites_path(books), method: :post, class: "unlike-btn" do %>
-            ♥<%= books.favorites.count %> 
-          <% end %>
-        <% end %>
+      <td class="favorite_btn_<%= books.id %>">
+        <%= render "favorites/favorite-btn", book: books %>
       </td>
       <td><p>コメント数：<%= books.book_comments.count %></p></td>
     </tr>

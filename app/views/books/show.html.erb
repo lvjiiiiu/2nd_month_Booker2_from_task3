@@ -22,17 +22,10 @@
         <% end %>
       </td>
       
-      <td>
-      <% if @book.favorited_by?(current_user) %>
-        <%= link_to book_favorites_path(@book), method: :delete, class: "like-btn" do %>
-          ♥<%= @book.favorites.count %> 
-        <% end %>
-      <% else %>
-        <%= link_to book_favorites_path(@book), method: :post, class: "unlike-btn" do %>
-          ♥<%= @book.favorites.count %> 
-        <% end %>
-      <% end %>
+      <td class="favorite_btn">
+        <%= render "favorites/favorite-btn", book: @book %>
       </td>
+      
       <td><p>コメント数：<%= @book.book_comments.count %></p></td>
     </tr>
   </table>
@@ -53,13 +46,12 @@
   </table>
   
   <div class="new-comment">
-    
-  <%= form_with(model:[@book, @book_comment], local: true) do |f| %>
-    <%= f.text_area :comment, rows:'5' %>
-    <div>
-      <%= f.submit "送信" %>
-    </div>
-  <% end %>
+    <%= form_with(model:[@book, @book_comment], local: true) do |f| %>
+      <%= f.text_area :comment, rows:'5' %>
+      <div>
+        <%= f.submit "送信" %>
+      </div>
+    <% end %>
   </div>
 </div>
 
