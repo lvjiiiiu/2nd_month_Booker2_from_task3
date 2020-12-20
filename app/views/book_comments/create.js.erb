@@ -1,2 +1,3 @@
 $(".comment_index_<%= @book.id %>").html("<%= j(render "book_comments/comment-index", book: @book) %>");
+$(".comments-count_<%= @book.id %>").html("コメント数：<%= @book.book_comments.count %>");
 $("textarea").val(" ");
