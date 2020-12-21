@@ -45,4 +45,12 @@ include JpPrefecture
   def prefecture_name=(prefecture_name)
     self.prefecture_code = JpPrefecture::Prefecture.find(name: prefecture_name).code
   end
+  
+  after_create :complete_mail
+
+  def complete_mail
+    ThanksMailer.complete_mail(self).deliver
+  end
+  
+  
 end

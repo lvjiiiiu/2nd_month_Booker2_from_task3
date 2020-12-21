@@ -51,6 +51,7 @@ group :development do
   gem 'spring-watcher-listen', '~> 2.0.0'
   gem "rubocop-airbnb"
   gem 'pry-byebug'
+  gem "letter_opener"
 end
 
 group :test do
@@ -74,3 +75,4 @@ gem 'font-awesome-sass', '~> 5.13'
 
 gem "jquery-rails"
 gem 'jp_prefecture'
+gem 'dotenv-rails'
