@@ -36,7 +36,7 @@ class User < ApplicationRecord
   #  introduction：最大50文字までに設定してください。
   validates :introduction, length: { maximum: 50 }
   
-  include JpPrefecture
+include JpPrefecture
   jp_prefecture :prefecture_code　
   def prefecture_name
     JpPrefecture::Prefecture.find(code: prefecture_code).try(:name)

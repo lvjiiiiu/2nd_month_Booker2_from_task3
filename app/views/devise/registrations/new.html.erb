@@ -15,20 +15,20 @@
     
     <div class="field">
       <%= f.label :postal_code %><br />
-      <%= f.text_field :postal_code, autofocus: true, placeholder: 'postal_code', class: "postal_code" %>
+      <%= f.text_field :postal_code, autofocus: true, placeholder: 'postal_code', id: "user_postcode" %>
     </div>
     
     <div class="field">
       <%= f.label :prefecture_code %><br />
-      <%= f.collection_select :prefecture_code, JpPrefecture::Prefecture.all, :code, :name, class: "address" %>
+      <%= f.collection_select :prefecture_code, JpPrefecture::Prefecture.all, :code, :name, id: 'user_prefecture_code' %>
     </div>
     <div class="field">
       <%= f.label :city %><br />
-      <%= f.text_field :city, autofocus: true, class: "address_city" %>
+      <%= f.text_field :city, autofocus: true, id: "user_address_city" %>
     </div>
     <div class="field">
       <%= f.label :street %><br />
-      <%= f.text_field :street, autofocus: true, class: "street" %>
+      <%= f.text_field :street, autofocus: true, id: "user_address_street" %>
     </div>
 
     <div class="field">
