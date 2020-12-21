@@ -12,6 +12,24 @@
       <%= f.label :email %><br />
       <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
     </div>
+    
+    <div class="field">
+      <%= f.label :postal_code %><br />
+      <%= f.text_field :postal_code, autofocus: true, placeholder: 'postal_code', class: "postal_code" %>
+    </div>
+    
+    <div class="field">
+      <%= f.label :prefecture_code %><br />
+      <%= f.collection_select :prefecture_code, JpPrefecture::Prefecture.all, :code, :name, class: "address" %>
+    </div>
+    <div class="field">
+      <%= f.label :city %><br />
+      <%= f.text_field :city, autofocus: true, class: "address_city" %>
+    </div>
+    <div class="field">
+      <%= f.label :street %><br />
+      <%= f.text_field :street, autofocus: true, class: "street" %>
+    </div>
 
     <div class="field">
       <%= f.label :password %>
