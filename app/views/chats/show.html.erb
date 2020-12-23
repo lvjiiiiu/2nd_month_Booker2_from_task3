@@ -1,0 +1,14 @@
+<div class="col-sm-12 col-md-10 col-lg- px-sm-0 mx-auto">
+  <h1><%= @user.name %> さんとのチャット</h1>
+  <div>
+    <%= form_with model: @chat do |f| %>
+        <%= f.text_field :message %>
+        <%= f.hidden_field :room_id %>
+    <% end %>
+  </div>
+  <div class="message">
+    <% @chats.each do |chat| %>
+      <p><%= chat.message %></p>
+    <% end %>
+  </div>
+</div>
