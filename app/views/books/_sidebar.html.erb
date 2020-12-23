@@ -34,6 +34,9 @@
     <% else %>
 　    <%= link_to 'フォローする', user_relationships_path(user.id), method: :POST, class: "btn btn-success" %>
     <% end %>
+    <div>
+　    <%= link_to 'chatを始める', chat_path(user.id)%>
+    </div>
   <% else %>
     <%= link_to edit_user_path(user), class: "btn btn-outline-secondary w-100 p-0" do %>
       <i class="fas fa-user-cog"></i>
